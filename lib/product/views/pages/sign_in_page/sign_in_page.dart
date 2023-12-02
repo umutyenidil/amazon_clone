@@ -1,8 +1,8 @@
-import 'package:amazon_clone/product/constants/app_border_radius.dart';
 import 'package:amazon_clone/product/constants/app_padding.dart';
 import 'package:amazon_clone/product/router/app_router.dart';
 import 'package:amazon_clone/product/views/common_widgets/secure_text_input_field.dart';
 import 'package:amazon_clone/product/views/common_widgets/text_input_field.dart';
+import 'package:amazon_clone/product/views/pages/default_page/form_submit_button.dart';
 import 'package:flutter/material.dart';
 
 part '_sign_in_page_manager.dart';
@@ -24,6 +24,7 @@ class _SignInPageState extends _SignInPageManager {
           SliverFillRemaining(
             hasScrollBody: false,
             child: Form(
+              key: _formKey,
               child: Padding(
                 padding: AppPadding.instance.all16,
                 child: Column(
@@ -33,7 +34,7 @@ class _SignInPageState extends _SignInPageManager {
                       padding: AppPadding.instance.b16,
                       child: TextInputField(
                         controller: _emailAddressController,
-                        hintText: 'Your email address',
+                        hintText: _emailAddressFieldHint,
                         inputType: TextInputType.emailAddress,
                       ),
                     ),
@@ -41,27 +42,21 @@ class _SignInPageState extends _SignInPageManager {
                       padding: AppPadding.instance.b16,
                       child: SecureTextInputField(
                         controller: _passwordController,
-                        hintText: 'Your password',
+                        hintText: _passwordFieldHint,
                       ),
                     ),
-                    ElevatedButton(
+                    FormSubmitButton(
                       onPressed: _submitForm,
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: AppBorderRadius.instance.all16,
-                        ),
-                        minimumSize: const Size(double.infinity, 50),
-                      ),
-                      child: const Text('Sign in'),
+                      child: Text(_submitButtonText),
                     ),
                     const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Don't have an account?"),
+                        Text(_signUpHintText),
                         TextButton(
                           onPressed: _routeSignUpPage,
-                          child: const Text('Sign up'),
+                          child: Text(_signUpButtonText),
                         ),
                       ],
                     ),
@@ -77,7 +72,7 @@ class _SignInPageState extends _SignInPageManager {
 
   AppBar _appBar() {
     return AppBar(
-      title: const Text('Sign in'),
+      title: Text(_appTitleText),
       centerTitle: true,
     );
   }
