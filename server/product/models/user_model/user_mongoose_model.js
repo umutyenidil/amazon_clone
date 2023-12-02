@@ -7,7 +7,7 @@ class UserMongooseModel {
         return (existingUser) ? false : true;
     }
 
-    async create({name, emailAddress, password}){
+    async create({ name, emailAddress, password }) {
         let user = new UserMongoose({
             name,
             emailAddress,
@@ -15,6 +15,12 @@ class UserMongooseModel {
         });
 
         user = await user.save();
+
+        return user;
+    }
+
+    async readByEmailAddress({ emailAddress }) {
+        let user = await UserMongoose.findOne({ emailAddress });
 
         return user;
     }

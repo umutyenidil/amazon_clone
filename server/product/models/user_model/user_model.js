@@ -16,6 +16,12 @@ class UserModel {
 
         return user;
     }
+
+    async readByEmailAddress({ emailAddress }) {
+       const user = UserMongooseModel.readByEmailAddress({emailAddress});
+
+       return user;
+    }
 }
 
 const instance = Object.freeze(new UserModel());

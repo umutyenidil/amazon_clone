@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const { cryptPassword } = require('../../utilities/crypt');
+const crypt = require('../../utilities/crypt');
 
 const userSchema = mongoose.mongoose.Schema(
     {
@@ -45,7 +45,7 @@ const userSchema = mongoose.mongoose.Schema(
 
 userSchema.pre('save', async function (next) {
 
-    this.password = await cryptPassword({ password: this.password });
+    this.password = await crypt.cryptPassword({ password: this.password });
 
     next();
 });
