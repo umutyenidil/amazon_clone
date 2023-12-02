@@ -22,10 +22,11 @@ router.post('/sign-up', async (incomingRequest, outgoingResponse) => {
 
 
         UserModel.create({ name, emailAddress, password })
-            .then(() => {
+            .then((user) => {
                 return outgoingResponse.status(200).json(user);
             })
             .catch((validationError) => {
+                console.log(validation)
                 let errors = mongooseValidationErrorHandler(validationError);
 
                 return outgoingResponse.status(400).json(errors);
