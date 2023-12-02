@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:amazon_clone/product/models/sign_in_form_model.dart';
+import 'package:amazon_clone/product/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:amazon_clone/product/models/sign_up_form_model.dart';
@@ -29,6 +31,30 @@ class AuthService {
 
       if (response.statusCode == 200) {
         return AuthServiceResponse(status: AuthServiceResponseStatus.successful);
+      }
+
+      return AuthServiceResponse(status: AuthServiceResponseStatus.failed, message: responseBody[responseBody.keys.first]);
+    } catch (exception) {
+      return AuthServiceResponse(status: AuthServiceResponseStatus.failed, message: exception.toString());
+    }
+  }
+
+  Future<AuthServiceResponse> signIn(SignInFormModel signInFormData) async{
+    try {
+      Uri url = Uri.parse('$_apiAddres/sign-in');
+
+      http.Response response = await http.post(
+        url,
+        body: signInFormData.toJson(),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+
+      Map<String, dynamic> responseBody = jsonDecode(response.body);
+
+      if (response.statusCode == 200) {
+        return AuthServiceResponse(status: AuthServiceResponseStatus.successful, user: UserModel.fromMap(responseBody));
       }
 
       return AuthServiceResponse(status: AuthServiceResponseStatus.failed, message: responseBody[responseBody.keys.first]);

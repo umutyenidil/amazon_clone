@@ -72,8 +72,6 @@ abstract class _SignUpPageManager extends State<SignUpPage> {
           case AuthServiceResponseStatus.failed:
             SnackbarHelper.of(context).showSnackBar(response.message!);
             break;
-          case AuthServiceResponseStatus.notValidated:
-            SnackbarHelper.of(context).showSnackBar(response.message!);
         }
       }
     }

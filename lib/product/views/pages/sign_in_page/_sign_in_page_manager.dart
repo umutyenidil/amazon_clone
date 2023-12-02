@@ -40,9 +40,53 @@ abstract class _SignInPageManager extends State<SignInPage> {
     super.dispose();
   }
 
-  void _submitForm() {}
+  Future<void> _submitForm() async {
+    // formun validate olup olmadigini kontrol et
+    bool isFormValidate = _formKey.currentState?.validate() ?? false;
+
+    if (isFormValidate) {
+      // girilen verileri al
+      SignInFormModel formData = SignInFormModel(
+        emailAddress: _emailAddressController.text,
+        password: _passwordController.text,
+      );
+
+      // sign up islemini yapmaya calis
+      AuthServiceResponse response = await AuthService.instance.signIn(formData);
+
+      // sign up islemi sonucuna gore snackbar goster
+      if (context.mounted) {
+        SnackbarHelper.of(context).clearSnackBars();
+        switch (response.status) {
+          case AuthServiceResponseStatus.successful:
+            SnackbarHelper.of(context).showSnackBar(response.user!.token!);
+            break;
+          case AuthServiceResponseStatus.failed:
+            SnackbarHelper.of(context).showSnackBar(response.message!);
+            break;
+        }
+      }
+    }
+  }
 
   void _routeSignUpPage() {
     AppRouter.of(context).route(Routes.sign_up_page, routingMethod: RoutingMethods.pushReplacement);
+  }
+
+  // todo: validation'lari tek yerde topla
+  String? _emailFieldValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email address field cannot be empty';
+    }
+
+    return null;
+  }
+
+  String? _passwordFieldValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password field cannot be empty';
+    }
+
+    return null;
   }
 }

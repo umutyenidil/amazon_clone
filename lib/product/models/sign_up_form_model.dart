@@ -27,14 +27,14 @@ class SignUpFormModel {
   String toJson() => json.encode(toMap());
 
   factory SignUpFormModel.fromMap(Map<String, dynamic> json) => SignUpFormModel(
-    name: json["name"],
-    emailAddress: json["emailAddress"],
-    password: json["password"],
-  );
+        name: json["name"],
+        emailAddress: json["emailAddress"],
+        password: json["password"],
+      );
 
   Map<String, dynamic> toMap() => {
-    "name": name,
-    "emailAddress": emailAddress,
-    "password": password,
-  };
+        "name": name,
+        "emailAddress": emailAddress,
+        "password": password,
+      };
 }
