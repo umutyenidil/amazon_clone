@@ -1,5 +1,8 @@
 import 'package:amazon_clone/product/constants/app_padding.dart';
+import 'package:amazon_clone/product/models/sign_up_form_model.dart';
 import 'package:amazon_clone/product/router/app_router.dart';
+import 'package:amazon_clone/product/services/auth_service/auth_service.dart';
+import 'package:amazon_clone/product/utilities/snack_bar_helper.dart';
 import 'package:amazon_clone/product/views/common_widgets/secure_text_input_field.dart';
 import 'package:amazon_clone/product/views/common_widgets/text_input_field.dart';
 import 'package:amazon_clone/product/views/pages/default_page/form_submit_button.dart';
@@ -35,6 +38,7 @@ class _SignUpPageState extends _SignUpPageManager {
                         controller: _nameController,
                         hintText: _nameFieldHint,
                         inputType: TextInputType.name,
+                        validator: _nameFieldValidator,
                       ),
                     ),
                     Padding(
@@ -43,6 +47,7 @@ class _SignUpPageState extends _SignUpPageManager {
                         controller: _emailAddressController,
                         hintText: _emailAddressFieldHint,
                         inputType: TextInputType.emailAddress,
+                        validator: _emailFieldValidator,
                       ),
                     ),
                     Padding(
@@ -50,6 +55,7 @@ class _SignUpPageState extends _SignUpPageManager {
                       child: SecureTextInputField(
                         controller: _passwordController,
                         hintText: _passwordFieldHint,
+                        validator: _passwordFieldValidator,
                       ),
                     ),
                     FormSubmitButton(

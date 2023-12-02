@@ -47,9 +47,64 @@ abstract class _SignUpPageManager extends State<SignUpPage> {
     super.dispose();
   }
 
-  void _submitForm() {}
+  Future<void> _submitForm() async {
+    // formun validate olup olmadigini kontrol et
+    bool isFormValidate = _formKey.currentState?.validate() ?? false;
+
+    if (isFormValidate) {
+      // girilen verileri al
+      SignUpFormModel formData = SignUpFormModel(
+        name: _nameController.text,
+        emailAddress: _emailAddressController.text,
+        password: _passwordController.text,
+      );
+
+      // sign up islemini yapmaya calis
+      AuthServiceResponse response = await AuthService.instance.signUp(formData);
+
+      // sign up islemi sonucuna gore snackbar goster
+      if (context.mounted) {
+        SnackbarHelper.of(context).clearSnackBars();
+        switch (response.status) {
+          case AuthServiceResponseStatus.successful:
+            SnackbarHelper.of(context).showSnackBar('User has been created');
+            break;
+          case AuthServiceResponseStatus.failed:
+            SnackbarHelper.of(context).showSnackBar(response.message!);
+            break;
+          case AuthServiceResponseStatus.notValidated:
+            SnackbarHelper.of(context).showSnackBar(response.message!);
+        }
+      }
+    }
+  }
 
   void _routeSignInPage() {
     AppRouter.of(context).route(Routes.sign_in_page, routingMethod: RoutingMethods.pushReplacement);
+  }
+
+  // todo: validator methodlarini yonet
+  String? _emailFieldValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email address field cannot be empty';
+    }
+
+    return null;
+  }
+
+  String? _nameFieldValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Name field cannot be empty';
+    }
+
+    return null;
+  }
+
+  String? _passwordFieldValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password field cannot be empty';
+    }
+
+    return null;
   }
 }

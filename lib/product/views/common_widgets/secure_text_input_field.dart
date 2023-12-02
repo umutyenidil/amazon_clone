@@ -3,14 +3,18 @@ import 'package:amazon_clone/product/constants/app_border_radius.dart';
 import 'package:amazon_clone/product/constants/app_padding.dart';
 import 'package:flutter/material.dart';
 
+typedef ValidatorCallback = String? Function(String? value)?;
+
 class SecureTextInputField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
+  final ValidatorCallback validator;
 
   const SecureTextInputField({
     super.key,
     required this.controller,
     required this.hintText,
+    this.validator,
   });
 
   @override
@@ -32,6 +36,7 @@ class _SecureTextInputFieldState extends State<SecureTextInputField> {
     return TextFormField(
       controller: widget.controller,
       obscureText: _isSecure,
+      validator: widget.validator,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: AppBorderRadius.instance.all16,
