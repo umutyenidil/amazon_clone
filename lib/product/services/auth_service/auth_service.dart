@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:amazon_clone/product/models/sign_in_form_model.dart';
 import 'package:amazon_clone/product/models/user_model.dart';
 import 'package:http/http.dart' as http;
@@ -8,12 +7,13 @@ import 'package:amazon_clone/product/models/sign_up_form_model.dart';
 
 part 'auth_service_response.dart';
 
+// todo: service icindeki api url'lerini bir enum altinda topla
 class AuthService {
   AuthService._();
 
   static final AuthService instance = AuthService._();
 
-  final String _apiAddres = 'http://192.168.169.85:3000/api';
+  final String _apiAddres = 'http://192.168.169.85:3000/api/auth';
 
   Future<AuthServiceResponse> signUp(SignUpFormModel signUpFormData) async {
     try {
@@ -39,7 +39,7 @@ class AuthService {
     }
   }
 
-  Future<AuthServiceResponse> signIn(SignInFormModel signInFormData) async{
+  Future<AuthServiceResponse> signIn(SignInFormModel signInFormData) async {
     try {
       Uri url = Uri.parse('$_apiAddres/sign-in');
 
@@ -58,6 +58,30 @@ class AuthService {
       }
 
       return AuthServiceResponse(status: AuthServiceResponseStatus.failed, message: responseBody[responseBody.keys.first]);
+    } catch (exception) {
+      return AuthServiceResponse(status: AuthServiceResponseStatus.failed, message: exception.toString());
+    }
+  }
+
+  Future<AuthServiceResponse> isUserAuthenticated(String xAuthToken) async {
+    try {
+      Uri url = Uri.parse('$_apiAddres/user-authentication');
+
+      http.Response response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': xAuthToken,
+        },
+      );
+
+      Map<String, dynamic> responseBody = jsonDecode(response.body);
+
+      if (response.statusCode == 200 && responseBody['isAuthenticated']) {
+        return AuthServiceResponse(status: AuthServiceResponseStatus.authenticated);
+      }
+
+      return AuthServiceResponse(status: AuthServiceResponseStatus.notAuthenticated);
     } catch (exception) {
       return AuthServiceResponse(status: AuthServiceResponseStatus.failed, message: exception.toString());
     }

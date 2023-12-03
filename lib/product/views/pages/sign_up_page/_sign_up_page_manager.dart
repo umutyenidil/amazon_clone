@@ -42,7 +42,7 @@ abstract class _SignUpPageManager extends State<SignUpPage> {
   void dispose() {
     _nameController.dispose();
     _emailAddressController.dispose();
-    _passwordController = TextEditingController();
+    _passwordController.dispose();
 
     super.dispose();
   }
@@ -72,6 +72,10 @@ abstract class _SignUpPageManager extends State<SignUpPage> {
           case AuthServiceResponseStatus.failed:
             SnackbarHelper.of(context).showSnackBar(response.message!);
             break;
+          case AuthServiceResponseStatus.authenticated:
+            // TODO: Handle this case.
+          case AuthServiceResponseStatus.notAuthenticated:
+            // TODO: Handle this case.
         }
       }
     }

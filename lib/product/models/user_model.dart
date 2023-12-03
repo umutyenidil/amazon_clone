@@ -19,6 +19,10 @@ class UserModel {
     this.token,
   });
 
+  factory UserModel.empty() {
+    return UserModel(name: '', emailAddress: '', password: '', address: '', type: '', id: '');
+  }
+
   UserModel copyWith({
     String? name,
     String? emailAddress,

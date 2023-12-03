@@ -1,8 +1,8 @@
-import 'package:amazon_clone/product/app_config/app.dart';
+import 'package:amazon_clone/product/app_config/app_initializer.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+Future<void> main() async {
+  await initApp();
 
-  runApp(const App());
+  runApp(const AppInitializer());
 }

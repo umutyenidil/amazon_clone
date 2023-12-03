@@ -11,4 +11,6 @@ class AuthServiceResponse {
 enum AuthServiceResponseStatus {
   successful,
   failed,
+  authenticated,
+  notAuthenticated,
 }

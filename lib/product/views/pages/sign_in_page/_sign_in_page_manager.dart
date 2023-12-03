@@ -59,11 +59,24 @@ abstract class _SignInPageManager extends State<SignInPage> {
         SnackbarHelper.of(context).clearSnackBars();
         switch (response.status) {
           case AuthServiceResponseStatus.successful:
-            SnackbarHelper.of(context).showSnackBar(response.user!.token!);
+            await SharedPreferencesManager.instance.init();
+
+            await SharedPreferencesManager.instance.saveString(SharedPreferencesKeys.xAuthToken, response.user!.token!);
+
+            if (context.mounted) {
+              Provider.of<AuthProvider>(context, listen: false).setCurrentUser(response.user!);
+
+              AppRouter.of(context).route(Routes.main_page, routingMethod: RoutingMethods.pushAndRemoveEverything);
+            }
+
             break;
           case AuthServiceResponseStatus.failed:
             SnackbarHelper.of(context).showSnackBar(response.message!);
             break;
+          case AuthServiceResponseStatus.authenticated:
+            // TODO: Handle this case.
+          case AuthServiceResponseStatus.notAuthenticated:
+            // TODO: Handle this case.
         }
       }
     }

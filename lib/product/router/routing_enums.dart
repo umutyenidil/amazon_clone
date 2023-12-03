@@ -6,6 +6,7 @@ enum Routes {
   default_page,
   sign_in_page,
   sign_up_page,
+  main_page,
 }
 
 enum RoutingMethods {
