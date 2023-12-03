@@ -59,7 +59,7 @@ module.exports.signIn = async (incomingRequest, outgoingResponse) => {
             hashedValue: user.password,
         });
 
-        if(!isPasswordMatched){
+        if (!isPasswordMatched) {
             return outgoingResponse.status(400).json(
                 {
                     message: 'Email address or password is wrong',
@@ -67,12 +67,59 @@ module.exports.signIn = async (incomingRequest, outgoingResponse) => {
             );
         }
 
-        const token = jwt.generateToken({userId: user._id});
+        const token = jwt.generateToken({ userId: user._id });
 
         return outgoingResponse.status(200).json({
             token,
             ...user._doc,
         });
+
+    } catch (error) {
+        return outgoingResponse.status(500).json(
+            {
+                errorMessage: error.message,
+            }
+        );
+    }
+};
+
+module.exports.userAuthentication = async (incomingRequest, outgoingResponse) => {
+    try {
+        const token = incomingRequest.header('x-auth-token');
+
+        if (!token) {
+            return outgoingResponse.status(200).json(
+                {
+                    isAuthenticated: false,
+                }
+            );
+        }
+
+        const isVerified = jwt.verifyToken({ token });
+
+        if (!isVerified) {
+            return outgoingResponse.status(200).json(
+                {
+                    isAuthenticated: false,
+                }
+            );
+        }
+
+        const user = await UserModel.read({ userId: isVerified.id });
+
+        if (!user) {
+            return outgoingResponse.status(200).json(
+                {
+                    isAuthenticated: false,
+                }
+            );
+        }
+
+        return outgoingResponse.status(200).json(
+            {
+                isAuthenticated: true,
+            }
+        );
 
     } catch (error) {
         return outgoingResponse.status(500).json(

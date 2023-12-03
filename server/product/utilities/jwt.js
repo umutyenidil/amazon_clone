@@ -8,3 +8,9 @@ module.exports.generateToken = ({ userId }) => {
 
     return token;
 };
+
+module.exports.verifyToken = ({ token }) => {
+    const isVerified = jsonwebtoken.verify(token, key);
+
+    return isVerified;
+};

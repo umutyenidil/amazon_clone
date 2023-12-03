@@ -17,10 +17,16 @@ class UserModel {
         return user;
     }
 
-    async readByEmailAddress({ emailAddress }) {
-       const user = UserMongooseModel.readByEmailAddress({emailAddress});
+    async read({ userId }) {
+        const user = await UserMongooseModel.read({ userId });
 
-       return user;
+        return user;
+    }
+
+    async readByEmailAddress({ emailAddress }) {
+        const user = await UserMongooseModel.readByEmailAddress({ emailAddress });
+
+        return user;
     }
 }
 
