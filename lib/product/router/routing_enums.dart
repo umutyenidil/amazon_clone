@@ -7,6 +7,9 @@ enum Routes {
   sign_in_page,
   sign_up_page,
   main_page,
+  home_page,
+  cart_page,
+  profile_page,
 }
 
 enum RoutingMethods {

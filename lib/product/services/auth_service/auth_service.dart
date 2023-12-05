@@ -15,6 +15,20 @@ class AuthService {
 
   final String _apiAddres = 'http://192.168.169.85:3000/api/auth';
 
+  /// returns AuthServiceResponse
+  ///
+  /// AuthServiceResponse.status == AuthServiceResponseStatus.successful then
+  ///
+  /// AuthServiceResponse.user : null
+  ///
+  /// AuthServiceResponse.message : null
+  ///
+  ///
+  /// AuthServiceResponse.status == AuthServiceResponseStatus.failed then
+  ///
+  /// AuthServiceResponse.user : null
+  ///
+  /// AuthServiceResponse.message : string
   Future<AuthServiceResponse> signUp(SignUpFormModel signUpFormData) async {
     try {
       Uri url = Uri.parse('$_apiAddres/sign-up');
