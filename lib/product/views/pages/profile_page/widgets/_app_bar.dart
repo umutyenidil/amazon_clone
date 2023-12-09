@@ -50,7 +50,7 @@ class _AppBarState extends State<_AppBar> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 500),
     );
-    _animation2 = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _animation2Controller, curve: Curves.easeIn));
+    _animation2 = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(parent: _animation2Controller, curve: Curves.linear));
     _animation2Controller.addListener(() {
       setState(() {});
     });
