@@ -5,9 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 enum SvgIcons {
   amazon,
+  arrow_square_down,
+  box,
+  chart_21,
   eye,
   eye_slash,
   home_2,
+  location,
   notification,
   profile_circle,
   search_normal_1,

@@ -17,6 +17,14 @@ extension RoutingExtensiton on Routes {
         return const CartPage();
       case Routes.profile_page:
         return const ProfilePage();
+      case Routes.admin_main_page:
+        return const AdminMainPage();
+      case Routes.admin_home_page:
+        return const AdminHomePage();
+      case Routes.admin_analytics_page:
+        return const AdminAnalyticsPage();
+      case Routes.admin_orders_page:
+        return const AdminOrdersPage();
       case Routes.default_page:
       default:
         return const DefaultPage();

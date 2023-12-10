@@ -1,3 +1,7 @@
+import 'package:amazon_clone/product/views/pages/admin_analytics_page/admin_analytics_page.dart';
+import 'package:amazon_clone/product/views/pages/admin_home_page/admin_home_page.dart';
+import 'package:amazon_clone/product/views/pages/admin_main_page/admin_main_page.dart';
+import 'package:amazon_clone/product/views/pages/admin_orders_page/admin_orders_page.dart';
 import 'package:amazon_clone/product/views/pages/cart_page/cart_page.dart';
 import 'package:amazon_clone/product/views/pages/default_page/default_page.dart';
 import 'package:amazon_clone/product/views/pages/home_page/home_page.dart';

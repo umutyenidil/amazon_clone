@@ -7,6 +7,7 @@ import 'package:amazon_clone/product/router/on_generate_route_mixin.dart';
 import 'package:amazon_clone/product/services/auth_service/auth_service.dart';
 import 'package:amazon_clone/product/services/user_service/user_service.dart';
 import 'package:amazon_clone/product/themes/app_theme.dart';
+import 'package:amazon_clone/product/views/pages/admin_main_page/admin_main_page.dart';
 import 'package:amazon_clone/product/views/pages/main_page/main_page.dart';
 import 'package:amazon_clone/product/views/pages/sign_in_page/sign_in_page.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,11 @@ class App extends StatelessWidget with OnGenerateRouteMixin {
             case ConnectionState.done:
               if (snapshot.hasData) {
                 if (snapshot.data!.status == UserServiceResponseStatus.successful) {
-                  return const MainPage();
+                  if (snapshot.data!.user!.type == 'user') {
+                    return const MainPage();
+                  } else {
+                    return const AdminMainPage();
+                  }
                 }
               }
               return const SignInPage();

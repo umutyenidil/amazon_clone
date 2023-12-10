@@ -10,6 +10,10 @@ enum Routes {
   home_page,
   cart_page,
   profile_page,
+  admin_main_page,
+  admin_home_page,
+  admin_analytics_page,
+  admin_orders_page,
 }
 
 enum RoutingMethods {

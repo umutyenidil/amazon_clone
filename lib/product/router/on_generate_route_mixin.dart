@@ -1,4 +1,6 @@
 import 'package:amazon_clone/product/app_config/app.dart';
+import 'package:amazon_clone/product/views/pages/admin_home_page/admin_home_page.dart';
+import 'package:amazon_clone/product/views/pages/admin_main_page/admin_main_page.dart';
 import 'package:amazon_clone/product/views/pages/default_page/default_page.dart';
 import 'package:amazon_clone/product/views/pages/main_page/main_page.dart';
 import 'package:amazon_clone/product/views/pages/sign_in_page/sign_in_page.dart';
@@ -24,14 +26,22 @@ mixin OnGenerateRouteMixin<T extends App> {
 
     switch (route) {
       case Routes.sign_in_page:
-        return _materialPageRoute(const SignInPage());
+        return _materialPageRoute(Routes.sign_in_page.page);
       case Routes.sign_up_page:
-        return _materialPageRoute(const SignUpPage());
+        return _materialPageRoute(Routes.sign_up_page.page);
       case Routes.main_page:
-        return _materialPageRoute(const MainPage());
+        return _materialPageRoute(Routes.main_page.page);
+      case Routes.admin_main_page:
+        return _materialPageRoute(Routes.admin_main_page.page);
+      case Routes.admin_home_page:
+        return _materialPageRoute(Routes.admin_home_page.page);
+      case Routes.admin_analytics_page:
+        return _materialPageRoute(Routes.admin_analytics_page.page);
+      case Routes.admin_orders_page:
+        return _materialPageRoute(Routes.admin_orders_page.page);
       case Routes.default_page:
       default:
-        return _materialPageRoute(const DefaultPage());
+        return _materialPageRoute(Routes.default_page.page);
     }
   }
 

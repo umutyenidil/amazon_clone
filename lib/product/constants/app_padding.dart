@@ -9,6 +9,7 @@ class AppPadding {
   final EdgeInsetsGeometry t8 = const EdgeInsets.only(top: 8.0);
   final EdgeInsetsGeometry t16 = const EdgeInsets.only(top: 16.0);
 
+  final EdgeInsetsGeometry b4 = const EdgeInsets.only(bottom: 4.0);
   final EdgeInsetsGeometry b8 = const EdgeInsets.only(bottom: 8.0);
   final EdgeInsetsGeometry b16 = const EdgeInsets.only(bottom: 16.0);
 
@@ -17,6 +18,10 @@ class AppPadding {
 
   final EdgeInsetsGeometry r8 = const EdgeInsets.only(right: 8.0);
   final EdgeInsetsGeometry r16 = const EdgeInsets.only(right: 16.0);
+  final EdgeInsetsGeometry r32 = const EdgeInsets.only(right: 32.0);
+  final EdgeInsetsGeometry r40 = const EdgeInsets.only(right: 40.0);
+  final EdgeInsetsGeometry r48 = const EdgeInsets.only(right: 48.0);
+  final EdgeInsetsGeometry r64 = const EdgeInsets.only(right: 64.0);
 
 
   final EdgeInsetsGeometry h4 = const EdgeInsets.symmetric(horizontal: 4.0);
@@ -32,4 +37,5 @@ class AppPadding {
 
   final EdgeInsetsGeometry all8 = const EdgeInsets.all(8.0);
   final EdgeInsetsGeometry all16 = const EdgeInsets.all(16.0);
+  final EdgeInsetsGeometry all32 = const EdgeInsets.all(32.0);
 }
