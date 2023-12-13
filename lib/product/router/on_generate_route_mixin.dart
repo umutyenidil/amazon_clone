@@ -39,6 +39,8 @@ mixin OnGenerateRouteMixin<T extends App> {
         return _materialPageRoute(Routes.admin_analytics_page.page);
       case Routes.admin_orders_page:
         return _materialPageRoute(Routes.admin_orders_page.page);
+      case Routes.admin_add_product_page:
+        return _materialPageRoute(Routes.admin_add_product_page.page);
       case Routes.default_page:
       default:
         return _materialPageRoute(Routes.default_page.page);

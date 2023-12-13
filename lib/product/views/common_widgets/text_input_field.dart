@@ -9,6 +9,8 @@ class TextInputField extends StatelessWidget {
   final String hintText;
   final TextInputType inputType;
   final ValidatorCallback validator;
+  final int? minLines;
+  final int? maxLines;
 
   const TextInputField({
     super.key,
@@ -16,11 +18,15 @@ class TextInputField extends StatelessWidget {
     required this.hintText,
     this.inputType = TextInputType.text,
     this.validator,
+    this.minLines,
+    this.maxLines,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
+      minLines: minLines,
       controller: controller,
       keyboardType: inputType,
       decoration: InputDecoration(

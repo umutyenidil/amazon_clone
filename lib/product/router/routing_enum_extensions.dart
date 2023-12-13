@@ -25,6 +25,8 @@ extension RoutingExtensiton on Routes {
         return const AdminAnalyticsPage();
       case Routes.admin_orders_page:
         return const AdminOrdersPage();
+      case Routes.admin_add_product_page:
+        return const AdminAddProductPage();
       case Routes.default_page:
       default:
         return const DefaultPage();

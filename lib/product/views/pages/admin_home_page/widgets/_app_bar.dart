@@ -7,39 +7,28 @@ class _AppBar extends StatefulWidget implements PreferredSizeWidget {
   State<_AppBar> createState() => _AppBarState();
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(60);
 }
 
 class _AppBarState extends _AppBarManager {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: context.statusBarHeight),
-      color: AppColor.instance.greenVogue,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: AppPadding.instance.h16,
-            child: Row(
-              children: [
-                Padding(
-                  padding: AppPadding.instance.r32,
-                  child: SvgIcons.amazon.toWidget(),
-                ),
-                Expanded(
-                  child: Text(
-                    _titleText,
-                    maxLines: 1,
-                    style: context.textTheme.titleLarge!.copyWith(
-                      color: AppColor.instance.white,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+    return AppBar(
+      backgroundColor: AppColor.instance.greenVogue,
+      title: Text(
+        _titleText,
+        style: context.textTheme.titleLarge!.copyWith(
+          color: AppColor.instance.white,
+        ),
+      ),
+      leading: IconButton(
+        icon: SvgIcons.amazon.toWidget(),
+        onPressed: () {
+          AppRouter.of(context).route(
+            Routes.admin_main_page,
+            routingMethod: RoutingMethods.pushReplacement,
+          );
+        },
       ),
     );
   }

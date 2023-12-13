@@ -13,7 +13,7 @@ class AuthService {
 
   static final AuthService instance = AuthService._();
 
-  final String _apiAddres = 'http://192.168.169.85:3000/api/auth';
+  final String _apiAddres = 'http://192.168.145.85:3000/api/auth';
 
   /// returns AuthServiceResponse
   ///

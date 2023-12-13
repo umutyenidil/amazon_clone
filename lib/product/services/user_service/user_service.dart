@@ -11,7 +11,7 @@ class UserService {
 
   static final UserService instance = UserService._();
 
-  final String _apiAddres = 'http://192.168.169.85:3000/api/user';
+  final String _apiAddres = 'http://192.168.145.85:3000/api/user';
 
   Future<UserServiceResponse> getUserData(String xAuthToken) async {
     try {

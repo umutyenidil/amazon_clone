@@ -14,6 +14,7 @@ enum Routes {
   admin_home_page,
   admin_analytics_page,
   admin_orders_page,
+  admin_add_product_page,
 }
 
 enum RoutingMethods {

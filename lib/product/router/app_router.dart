@@ -1,3 +1,4 @@
+import 'package:amazon_clone/product/views/pages/admin_add_product_page/admin_add_product_page.dart';
 import 'package:amazon_clone/product/views/pages/admin_analytics_page/admin_analytics_page.dart';
 import 'package:amazon_clone/product/views/pages/admin_home_page/admin_home_page.dart';
 import 'package:amazon_clone/product/views/pages/admin_main_page/admin_main_page.dart';

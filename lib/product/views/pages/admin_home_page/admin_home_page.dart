@@ -5,6 +5,7 @@ import 'package:amazon_clone/product/constants/app_color.dart';
 import 'package:amazon_clone/product/constants/app_padding.dart';
 import 'package:amazon_clone/product/models/user_model.dart';
 import 'package:amazon_clone/product/providers/auth_provider.dart';
+import 'package:amazon_clone/product/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,9 +23,13 @@ class AdminHomePage extends StatefulWidget {
 class _AdminHomePageState extends _AdminHomePageManager {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: _AppBar(),
+    return Scaffold(
+      appBar: const _AppBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _floatingActionButtonAction,
+        tooltip: 'Add new product',
+        child: SvgIcons.box_add.toWidget(),
+      ),
     );
   }
 }
-
