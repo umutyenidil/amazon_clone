@@ -15,6 +15,10 @@ class ProductModel {
     async readAll() {
         return ProductMongooseModel.readAll();
     }
+
+    async deleteProduct({id}){
+        return ProductMongooseModel.deleteProduct({id});
+    }
 }
 
 const instance = Object.freeze(new ProductModel());

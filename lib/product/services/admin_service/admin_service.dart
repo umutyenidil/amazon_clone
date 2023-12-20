@@ -133,4 +133,34 @@ class AdminService {
       return AdminServiceResponse(status: AdminServiceResponseStatus.failed, message: exception.toString());
     }
   }
+
+  Future<AdminServiceResponse> deleteProduct({
+    required String productId,
+    required String xAuthToken,
+  }) async {
+    try {
+      Uri url = Uri.parse('$_apiAddres/products/delete');
+
+      http.Response response = await http.post(
+        url,
+        body: jsonEncode({"id": productId}),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': xAuthToken,
+        },
+      );
+
+      print(response.body);
+
+      return AdminServiceResponse(
+        status: AdminServiceResponseStatus.successful,
+        products: [ProductModel.fromJson(response.body)],
+      );
+    } catch (exception) {
+      return AdminServiceResponse(
+        status: AdminServiceResponseStatus.failed,
+        message: exception.toString(),
+      );
+    }
+  }
 }

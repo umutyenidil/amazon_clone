@@ -62,7 +62,13 @@ class _AdminHomePageState extends _AdminHomePageManager {
                                   child: Text(model.name),
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    await AdminService.instance.deleteProduct(
+                                      productId: model.id!,
+                                      xAuthToken: Provider.of<AuthProvider>(context, listen: false).getCurrentUser()!.token!,
+                                    );
+                                    setState(() {});
+                                  },
                                   icon: SvgIcons.trash.toWidget(),
                                 ),
                               ],

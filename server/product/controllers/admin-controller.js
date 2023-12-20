@@ -38,3 +38,21 @@ module.exports.products = async (incomingRequest, outgoingResponse) => {
         );
     }
 };
+
+module.exports.productDelete = async (incomingRequest, outgoingResponse) => {
+    try {
+        const { id } = incomingRequest.body;
+
+        const deletedProduct = await ProductModel.deleteProduct({
+            id
+        });
+
+        outgoingResponse.status(200).json(deletedProduct);
+    } catch (error) {
+        return outgoingResponse.status(500).json(
+            {
+                errorMessage: error.message,
+            }
+        );
+    }
+};

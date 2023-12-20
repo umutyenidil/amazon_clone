@@ -22,6 +22,11 @@ class ProductMongooseModel {
         return user;
     }
 
+    async deleteProduct({id}){
+        const product = await ProductMongoose.findByIdAndDelete(id);
+        await product.save();
+    }
+
 }
 
 const instance = Object.freeze(new ProductMongooseModel());
