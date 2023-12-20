@@ -2,7 +2,7 @@ const ProductMongooseModel = require('./product_mongoose_model');
 
 class ProductModel {
     async create({ name, description, images, quantity, price, categoryId }) {
-        return await ProductMongooseModel.create({
+        return ProductMongooseModel.create({
             name,
             description,
             images,
@@ -12,16 +12,8 @@ class ProductModel {
         });
     }
 
-    async read({ userId }) {
-        const user = await ProductMongooseModel.read({ userId });
-
-        return user;
-    }
-
-    async readByEmailAddress({ emailAddress }) {
-        const user = await ProductMongooseModel.readByEmailAddress({ emailAddress });
-
-        return user;
+    async readAll() {
+        return ProductMongooseModel.readAll();
     }
 }
 

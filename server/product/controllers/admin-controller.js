@@ -21,3 +21,20 @@ module.exports.productAdd = async (incomingRequest, outgoingResponse) => {
         );
     }
 };
+
+module.exports.products = async (incomingRequest, outgoingResponse) => {
+    try {
+       const arrProducts = await ProductModel.readAll();
+
+       return outgoingResponse.status(200).json(
+        arrProducts,
+       );
+
+    } catch (error) {
+        return outgoingResponse.status(500).json(
+            {
+                errorMessage: error.message,
+            }
+        );
+    }
+};

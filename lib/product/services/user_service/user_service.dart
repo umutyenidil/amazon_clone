@@ -1,3 +1,4 @@
+import 'package:amazon_clone/product/app_config/app_config.dart';
 import 'package:amazon_clone/product/services/auth_service/auth_service.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,7 +12,7 @@ class UserService {
 
   static final UserService instance = UserService._();
 
-  final String _apiAddres = 'http://192.168.145.85:3000/api/user';
+  final String _apiAddres = '${AppConfig.instance.endPoint}/api/user';
 
   Future<UserServiceResponse> getUserData(String xAuthToken) async {
     try {

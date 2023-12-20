@@ -90,7 +90,7 @@ class _AppBarState extends State<_AppBar> with TickerProviderStateMixin {
                   shape: RoundedRectangleBorder(borderRadius: AppBorderRadius.instance.all16),
                   color: _animation1A.value,
                 ),
-                child: SvgIcons.placeholder.toWidget(),
+                child: SvgIcons.box_add.toWidget(color: Colors.transparent),
               ),
             ),
             Row(

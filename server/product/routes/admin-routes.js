@@ -7,6 +7,7 @@ const authMiddleware = require('../middlewares/auth-middleware');
 const router = express.Router();
 
 router.post('/product/add', adminController.productAdd);
+router.get('/products', adminController.products);
 
 
 

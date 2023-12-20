@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:amazon_clone/product/app_config/app_config.dart';
 import 'package:amazon_clone/product/models/sign_in_form_model.dart';
 import 'package:amazon_clone/product/models/user_model.dart';
 import 'package:http/http.dart' as http;
@@ -13,7 +14,7 @@ class AuthService {
 
   static final AuthService instance = AuthService._();
 
-  final String _apiAddres = 'http://192.168.145.85:3000/api/auth';
+  final String _apiAddres = '${AppConfig.instance.endPoint}/api/auth';
 
   /// returns AuthServiceResponse
   ///

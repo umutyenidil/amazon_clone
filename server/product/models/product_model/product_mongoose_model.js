@@ -16,17 +16,12 @@ class ProductMongooseModel {
         return product;
     }
 
-    async read({ userId }) {
-        const user = await ProductMongoose.findById(userId);
+    async readAll() {
+        const user = await ProductMongoose.find();
 
         return user;
     }
 
-    async readByEmailAddress({ emailAddress }) {
-        let user = await ProductMongoose.findOne({ emailAddress });
-
-        return user;
-    }
 }
 
 const instance = Object.freeze(new ProductMongooseModel());

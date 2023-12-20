@@ -19,7 +19,7 @@ enum SvgIcons {
   profile_circle,
   search_normal_1,
   shopping_cart,
-  placeholder,
+  trash,
 }
 
 enum SvgIconSizes {
@@ -63,13 +63,8 @@ extension SvgIconPaths on SvgIcons {
       throw Exception("You can't set size and width-height at the same time");
     }
 
-    if (this == SvgIcons.placeholder) {
-      return SvgPicture.asset(
-        SvgIcons.values[0].path,
-        width: (width != 24) ? width : size.toDouble(),
-        height: (height != 24) ? height : size.toDouble(),
-        colorFilter: const ColorFilter.mode(Colors.transparent, BlendMode.srcIn),
-      );
+    if(path == null){
+      throw Exception('test');
     }
 
     return SvgPicture.asset(
